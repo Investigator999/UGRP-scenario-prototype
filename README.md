@@ -4,7 +4,7 @@ A working, bilingual (Arabic and English) end-to-end scenario for Qatar's Unifie
 
 Each step shows the UGRP process it covers, the GRP capability it needs (on any ERP platform), and acceptance criteria. Key users can agree to each step or request changes, and the Implementer spec tab turns their sign-off into requirements.
 
-Live: https://teal-moxie-f981b9.netlify.app
+Live: https://ugrp-eight.vercel.app
 
 The whole prototype is a single file, `index.html`, with no build step. Figures, entity and suppliers are illustrative.
 
