@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* Layout idea: a government back-office workspace. Scenario steps on one side, the working screen in the middle,
-   and "what the implementer must build" beside it, so every screen is also a requirement. */
+   and "what the implementation team needs" beside it, so every screen is also a requirement. */
 :root{
   --bg:#F3F4F6; --surface:#FFFFFF; --sunk:#F7F8FA; --ink:#15171C; --muted:#555C6B; --line:#DCE0E6;
   --accent:#7A1E3A; --accent-ink:#FFFFFF; --accent-soft:#F5E8ED;
@@ -466,7 +466,7 @@ function header(){
       <div><h1>${L('Unified GRP · End-to-end scenario','نظام تخطيط الموارد الحكومية الموحد · سيناريو متكامل')}</h1>
       <small>${L('Prototype for key-user agreement before ERP configuration','نموذج أولي لاتفاق المستخدمين الرئيسيين قبل إعداد النظام')}</small></div></div>
     <nav class="tabs" aria-label="${L('Views','العروض')}">
-      ${tab('about', L('Start here','ابدأ هنا'))}${tab('scenario', L('Scenario','السيناريو'))}${tab('spec', L('Implementer spec','مواصفات المنفذ'))}${tab('approach', L('The approach','المنهجية'))}
+      ${tab('about', L('Start here','ابدأ هنا'))}${tab('scenario', L('Scenario','السيناريو'))}${tab('spec', L('Implementation baseline','أساس التنفيذ'))}${tab('approach', L('The approach','المنهجية'))}
     </nav>
     <div class="tools">
       <button class="btn small" data-act="lang">${S.lang==='ar'?'English':'العربية'}</button>
@@ -802,7 +802,7 @@ function side(st){
     <section class="card" aria-labelledby="so-h">
       <div class="eyebrow">${L('Key-user sign-off','موافقة المستخدم الرئيسي')}</div>
       <h3 id="so-h">${L('Is this how you want to work?','هل هذه هي الطريقة التي تريد العمل بها؟')}</h3>
-      ${so.status==='agree'?banner('ok',L('<b>Agreed.</b> This step goes to the implementer as written.','<b>تمت الموافقة.</b> تُسلَّم هذه الخطوة للمنفذ كما هي.'))
+      ${so.status==='agree'?banner('ok',L('<b>Agreed.</b> This step goes to the implementation team as agreed scope.','<b>تمت الموافقة.</b> تُسلَّم هذه الخطوة لفريق التنفيذ كنطاق متفق عليه.'))
         : so.status==='change'?banner('warn',L('<b>Change requested.</b> Update the scenario, then ask again.','<b>طُلب تعديل.</b> حدّث السيناريو ثم اطلب الموافقة مجدداً.')):''}
       <label class="lbl" for="cm-${st.id}">${L('Comment for this step','ملاحظة على هذه الخطوة')}</label>
       <textarea id="cm-${st.id}" data-live="comment:${st.id}" placeholder="${L('e.g. we also need the cost centre on this screen','مثال: نحتاج أيضاً مركز التكلفة في هذه الشاشة')}">${esc(so.comment||'')}</textarea>
@@ -810,10 +810,10 @@ function side(st){
     </section>
     <section class="card oracle" aria-labelledby="or-h">
       <div class="eyebrow">${L('Behind this screen','ما وراء هذه الشاشة')}</div>
-      <h3 id="or-h">${L('What the implementer must deliver','ما يجب على المنفذ تسليمه')}</h3>
+      <h3 id="or-h">${L('What this gives the implementation team','ما تقدمه هذه الشاشة لفريق التنفيذ')}</h3>
       <dl class="map"><div><dt>${L('UGRP process','عملية النظام الموحد')}</dt><dd>${m.ugrp}</dd></div>
         <div><dt>${L('GRP capability (any ERP platform)','قدرة النظام الموحد (أي منصة ERP)')}</dt><dd>${L(m.erp[0],m.erp[1])}</dd></div></dl>
-      <div><div class="map"><dt>${L('Acceptance criteria','معايير القبول')}</dt></div>
+      <div><div class="map"><dt>${L('Agreed test criteria','معايير الاختبار المتفق عليها')}</dt></div>
       <ul class="ac">${m.ac.map(a=>`<li>${L(a[0],a[1])}</li>`).join('')}</ul></div>
     </section></aside>`;
 }
@@ -884,7 +884,7 @@ function aboutView(){
       <div class="eyebrow">${L('Unified GRP · a proposal in working form','نظام تخطيط الموارد الحكومية الموحد · مقترح في صورة عملية')}</div>
       <h2>${L('Ahmed Badawy','أحمد بدوي')}</h2>
       <p class="role">${L('Senior Financial Specialist, Ministry of Commerce and Industry · former ERP implementation consultant','أخصائي مالي أول، وزارة التجارة والصناعة · استشاري سابق في تنفيذ أنظمة تخطيط الموارد')}</p>
-      <p class="pitch">${L('I have worked on both sides of the ERP gap: seven years implementing financial systems for large companies, then thirteen years in Qatar’s public sector as the user who lives with them. This prototype shows how I would close that gap on UGRP: agree the full scenario with key users first, then hold the GRP implementation to it.','عملت على جانبي الفجوة في أنظمة تخطيط الموارد: سبع سنوات في تنفيذ الأنظمة المالية لكبرى الشركات، ثم ثلاثة عشر عاماً في القطاع الحكومي القطري كمستخدم يعيش مع هذه الأنظمة يومياً. يوضح هذا النموذج كيف أسد هذه الفجوة في النظام الموحد: الاتفاق على السيناريو الكامل مع المستخدمين الرئيسيين أولاً، ثم إلزام تنفيذ النظام به.')}</p>
+      <p class="pitch">${L('I have worked on both sides of the ERP gap: seven years implementing financial systems for large companies, then thirteen years in Qatar’s public sector as the user who lives with them. This prototype shows how I would close that gap on UGRP: agree the full scenario with key users first, then give the implementation team a validated baseline to build from.','عملت على جانبي الفجوة في أنظمة تخطيط الموارد: سبع سنوات في تنفيذ الأنظمة المالية لكبرى الشركات، ثم ثلاثة عشر عاماً في القطاع الحكومي القطري كمستخدم يعيش مع هذه الأنظمة يومياً. يوضح هذا النموذج كيف أسد هذه الفجوة في النظام الموحد: الاتفاق على السيناريو الكامل مع المستخدمين الرئيسيين أولاً، ثم منح فريق التنفيذ أساساً متفقاً عليه للبناء.')}</p>
       <div class="actions"><button class="btn primary" data-act="start">${L('Walk through the scenario','استعراض السيناريو')}</button><button class="btn" data-act="view" data-arg="approach">${L('Read the approach','قراءة المنهجية')}</button></div>
       <p class="contact"><span>badawy123@gmail.com</span><span dir="ltr">+974 5538 2120</span></p>
     </section>
@@ -904,7 +904,7 @@ function aboutView(){
         <figure><img src="${IMG_BP_CHAPTERS}" alt="${L('Budget preparation by chapter against MoF ceilings, figures hidden','إعداد الموازنة حسب الأبواب مقابل سقوف وزارة المالية، الأرقام مخفية')}" loading="lazy"><figcaption>${L('Requested, proposed and approved by chapter, against the MoF ceiling.','المطلوب والمقترح والمعتمد حسب الباب، مقابل سقف وزارة المالية.')}</figcaption></figure>
         <figure><img src="${IMG_BP_CONTRACTS}" alt="${L('Active contracts screen of the budget preparation app','شاشة العقود السارية في تطبيق إعداد الموازنة')}" loading="lazy"><figcaption>${L('Active contracts, linked to departments and accounts so requests can reuse them.','العقود السارية، مرتبطة بالإدارات والحسابات ليُستفاد منها في الطلبات.')}</figcaption></figure>
       </div>
-      <p class="why">${L('UGRP is the same move at national scale: agree the working scenario with MoF and entity users, then let the GRP implementer quote and deliver against it.','النظام الموحد هو الخطوة نفسها على مستوى الدولة: الاتفاق على السيناريو العامل مع مستخدمي وزارة المالية والجهات، ثم يقدّم منفذ النظام عرضه وينفّذ على أساسه.')}</p>
+      <p class="why">${L('UGRP is the same move at national scale: agree the working scenario with MoF and entity users, then the implementation team starts from a validated baseline, with scope clear from day one.','النظام الموحد هو الخطوة نفسها على مستوى الدولة: الاتفاق على السيناريو العامل مع مستخدمي وزارة المالية والجهات، ثم يبدأ فريق التنفيذ من أساس متفق عليه ونطاق واضح من اليوم الأول.')}</p>
     </section>
     <div class="tiles">
       <div class="tile"><div class="v">13+</div><div class="k">${L('years in Qatar government and semi-government finance','عاماً في المالية الحكومية وشبه الحكومية في قطر')}</div></div>
@@ -950,10 +950,10 @@ function aboutView(){
 
 /* ---------- spec view ---------- */
 function specText(){
-  let t = `UNIFIED GRP · END-TO-END SCENARIO · IMPLEMENTER SPECIFICATION\n\n`;
+  let t = `UNIFIED GRP · END-TO-END SCENARIO · IMPLEMENTATION BASELINE\n\n`;
   STEPS.forEach((s,i)=>{
     const m=MAP[s.id], so=S.signoff[s.id]||{};
-    t += `${i+1}. ${s.en}  [${ROLES[s.role].en}]\n   Key-user status: ${so.status==='agree'?'AGREED':so.status==='change'?'CHANGE REQUESTED':'not reviewed'}${so.comment?`\n   Comment: ${so.comment}`:''}\n   UGRP process: ${m.ugrp}\n   GRP capability: ${m.erp[0]}\n   Acceptance criteria:\n${m.ac.map(a=>'   - '+a[0]).join('\n')}\n\n`;
+    t += `${i+1}. ${s.en}  [${ROLES[s.role].en}]\n   Key-user status: ${so.status==='agree'?'AGREED':so.status==='change'?'CHANGE REQUESTED':'not reviewed'}${so.comment?`\n   Comment: ${so.comment}`:''}\n   UGRP process: ${m.ugrp}\n   GRP capability: ${m.erp[0]}\n   Agreed test criteria:\n${m.ac.map(a=>'   - '+a[0]).join('\n')}\n\n`;
   });
   return t;
 }
@@ -968,8 +968,8 @@ function specView(){
       <ul class="ac">${m.ac.map(a=>`<li>${L(a[0],a[1])}</li>`).join('')}</ul>
       <div><button class="btn small" data-act="go" data-arg="${i}">${L('Open this screen','فتح الشاشة')}</button></div></article>`;}).join('');
   return `<div class="page">
-    <div class="card-head"><div><div class="eyebrow">${L('Implementer specification','مواصفات المنفذ')}</div><h2>${L('The scenario is the requirement','السيناريو هو المتطلب')}</h2>
-      <p class="lead">${L(`${agreed} of ${STEPS.length} steps agreed by key users. Each card is a test the configured ERP must pass, whichever ERP platform is chosen.`,`${agreed} من ${STEPS.length} خطوات وافق عليها المستخدمون الرئيسيون. كل بطاقة اختبار يجب أن يجتازه النظام بعد إعداده، أياً كانت منصة ERP المختارة.`)}</p></div>
+    <div class="card-head"><div><div class="eyebrow">${L('Implementation baseline','أساس التنفيذ')}</div><h2>${L('The agreed scenario, ready for fit-gap','السيناريو المتفق عليه، جاهز لتحليل الفجوات')}</h2>
+      <p class="lead">${L(`${agreed} of ${STEPS.length} steps agreed by key users. Each card gives the implementation team agreed scope and ready test criteria, whichever ERP platform is chosen.`,`${agreed} من ${STEPS.length} خطوات وافق عليها المستخدمون الرئيسيون. كل بطاقة اختبار يجب أن يجتازه النظام بعد إعداده، أياً كانت منصة ERP المختارة.`)}</p></div>
       <button class="btn" data-act="copy" data-arg="spec">${S.copied==='spec'?L('Copied','تم النسخ'):L('Copy spec as text','نسخ المواصفات كنص')}</button></div>
     <div class="spec-grid">${cards}</div></div>`;
 }
@@ -986,14 +986,20 @@ function approachView(){
       <div class="card"><h3>${L('What this prototype proves','ما يثبته هذا النموذج')}</h3>
         <ul><li>${L('One connected story from budget ceiling to bank file, with real controls: ceilings, funds check, 3-way match, signatory bands.','قصة واحدة مترابطة من سقف الموازنة إلى ملف البنك، بضوابط حقيقية: السقوف، فحص الاعتماد، المطابقة الثلاثية، فئات التوقيع.')}</li>
         <li>${L('Arabic and English on every screen, in the language users already work in.','العربية والإنجليزية في كل شاشة، باللغة التي يعمل بها المستخدمون فعلاً.')}</li>
-        <li>${L('Every screen states the UGRP process it covers and what the GRP must deliver, whichever ERP is chosen.','كل شاشة توضح عملية النظام الموحد التي تغطيها وما يجب أن يقدمه النظام الموحد أياً كانت منصة ERP.')}</li></ul></div>
+        <li>${L('Every screen states the UGRP process it covers and what the GRP needs to do, whichever ERP is chosen.','كل شاشة توضح عملية النظام الموحد التي تغطيها وما يجب أن يقدمه النظام الموحد أياً كانت منصة ERP.')}</li></ul></div>
     </div>
+    <div class="card"><h3>${L('What this gives the implementation team','ما يقدمه هذا لفريق التنفيذ')}</h3>
+      <ul><li>${L('Shorter requirements workshops: key users react to working screens instead of describing processes from memory.','ورش متطلبات أقصر: يتفاعل المستخدمون مع شاشات عاملة بدلاً من وصف العمليات من الذاكرة.')}</li>
+      <li>${L('Fewer change requests: scope is agreed before configuration starts, not discovered at UAT.','طلبات تغيير أقل: يُتفق على النطاق قبل بدء الإعداد لا عند اختبار القبول.')}</li>
+      <li>${L('Ready test scripts: every agreed step comes with its test criteria.','سيناريوهات اختبار جاهزة: كل خطوة متفق عليها ترافقها معايير اختبارها.')}</li>
+      <li>${L('Faster adoption: MoF and entity users recognise their own terms, documents and Arabic screens.','تبنٍّ أسرع: يجد مستخدمو وزارة المالية والجهات مصطلحاتهم ومستنداتهم وشاشاتهم العربية.')}</li>
+      <li>${L('A client-side bridge: someone who speaks both MoF finance and ERP configuration.','جسر من جهة العميل: شخص يتحدث لغة المالية الحكومية ولغة إعداد الأنظمة.')}</li></ul></div>
     ${banner('ok',L('<b>Already proven:</b> the ministry’s budget preparation system was specified this way. IT and the service provider worked from the app, not from a document.','<b>تجربة مثبتة:</b> حُددت متطلبات نظام إعداد موازنة الوزارة بهذه الطريقة، وعملت تقنية المعلومات ومزوّد الخدمة على التطبيق لا على وثيقة.'))}
     <ol class="method">
       <li><h3>${L('Model the scenario','بناء السيناريو')}</h3><p>${L('Build the end-to-end flow with key users, using their documents, terms and approval chains.','بناء المسار الكامل مع المستخدمين الرئيسيين بمستنداتهم ومصطلحاتهم ومسارات اعتمادهم.')}</p></li>
       <li><h3>${L('Click through and sign off','التجربة والموافقة')}</h3><p>${L('Key users walk the scenario and agree or request changes step by step, in days, not months.','يجرّب المستخدمون السيناريو ويوافقون أو يطلبون التعديل خطوة بخطوة، خلال أيام لا أشهر.')}</p></li>
-      <li><h3>${L('Hand over as acceptance criteria','التسليم كمعايير قبول')}</h3><p>${L('The signed scenario becomes the spec the implementer configures the chosen ERP against.','يصبح السيناريو الموقّع المواصفات التي يُعد المنفذ عليها منصة ERP المختارة.')}</p></li>
-      <li><h3>${L('Accept only what passes','القبول بما يجتاز فقط')}</h3><p>${L('UAT replays the same scenario. The ERP is accepted when it does what users already agreed to.','يُعاد السيناريو نفسه في اختبار القبول، ويُقبل النظام عندما يؤدي ما اتفق عليه المستخدمون مسبقاً.')}</p></li>
+      <li><h3>${L('Hand over a validated baseline','تسليم أساس متفق عليه')}</h3><p>${L('The implementation team gets agreed processes, screens and controls as the starting point for fit-gap and configuration on the chosen ERP.','يحصل فريق التنفيذ على عمليات وشاشات وضوابط متفق عليها كنقطة انطلاق لتحليل الفجوات والإعداد على منصة ERP المختارة.')}</p></li>
+      <li><h3>${L('Test what users already agreed','اختبار ما اتفق عليه المستخدمون')}</h3><p>${L('UAT scripts come straight from the scenario, so users test what they already saw and sign off faster.','تُستخرج سيناريوهات اختبار القبول من السيناريو نفسه، فيختبر المستخدمون ما رأوه مسبقاً ويعتمدونه أسرع.')}</p></li>
     </ol>
     <div class="actions"><button class="btn primary" data-act="start">${L('Walk through the scenario','استعراض السيناريو')}</button><button class="btn" data-act="view" data-arg="about">${L('About Ahmed','عن أحمد')}</button></div>
   </div>`;
